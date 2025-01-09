@@ -35,10 +35,10 @@ class EnrolmentResponse extends RemoteAbstractResponse implements RedirectRespon
 	public function isRedirect(): bool
 	{
 		return $this->response->status === 'failure' ? false : true;
-	}
+	} 
 
 	public function getRedirectResponse()
-	{
+	{ 
 		$response = parent::getRedirectResponse();
 
 		$response->setContent(str_replace('<body', "<body style='color:#FFF'", $this->getData()->threeDSHtmlContent));
@@ -55,12 +55,12 @@ class EnrolmentResponse extends RemoteAbstractResponse implements RedirectRespon
 		</script>';
 
 		$response->setContent(str_replace('</body>', "$script</body>", $response->getContent()));
-
-		echo $response->getContent();
+ 
+		return $response;
 	}
 
 	public function getRedirectUrl()
 	{
-		return 'IYZICO-Sends-Premade-Form-So-No-Url-Needed';
+		return ' ';
 	}
 }
