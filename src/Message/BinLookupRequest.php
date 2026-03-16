@@ -20,7 +20,7 @@ class BinLookupRequest extends RemoteAbstractRequest
         $this->validateAll();
 
         $request_params = new BinLookupRequestModel([
-            "binNumber"      => $this->getCard()->getNumber(),
+            "binNumber"      => $this->getCard() ? $this->getCard()->getNumber() : null,
             "conversationId" => $this->getTransactionId(),
             "locale"         => $this->getLanguage(),
             "price"          => $this->getAmount(),
@@ -44,7 +44,7 @@ class BinLookupRequest extends RemoteAbstractRequest
     {
         $this->validate("amount", "transactionId");
 
-        if (!is_null($this->getCard()->getNumber()) && !preg_match('/^\d{6,19}$/', $this->getCard()->getNumber())) {
+        if ($this->getCard() !== null && !is_null($this->getCard()->getNumber()) && !preg_match('/^\d{6,19}$/', $this->getCard()->getNumber())) {
             throw new InvalidCreditCardException('Card number should have at least 6 to maximum of 19 digits');
         }
     }
