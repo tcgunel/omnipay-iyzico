@@ -126,56 +126,6 @@ parameters:
 			path: src/Message/VerifyEnrolmentResponse.php
 
 		-
-			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 137$#"
-			count: 1
-			path: src/Models/BinLookupRequestModel.php
-
-		-
-			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 154$#"
-			count: 1
-			path: src/Models/BinLookupRequestModel.php
-
-		-
-			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \\* \", expected type at offset 70$#"
-			count: 1
-			path: src/Models/BinLookupRequestModel.php
-
-		-
-			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n\\\\t \\* \", expected type at offset 85$#"
-			count: 1
-			path: src/Models/BinLookupRequestModel.php
-
-		-
-			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 108$#"
-			count: 1
-			path: src/Models/BinLookupResponseModel.php
-
-		-
 			message: "#^PHPDoc tag @var does not specify variable name\\.$#"
 			count: 1
 			path: src/Models/ChargeRequestModel.php
-
-		-
-			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 127$#"
-			count: 1
-			path: src/Models/CreateCardRequestModel.php
-
-		-
-			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 129$#"
-			count: 1
-			path: src/Models/CreateCardRequestModel.php
-
-		-
-			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 66$#"
-			count: 1
-			path: src/Models/CreateCardRequestModel.php
-
-		-
-			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 75$#"
-			count: 1
-			path: src/Models/CreateCardRequestModel.php
-
-		-
-			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 93$#"
-			count: 3
-			path: src/Models/CreateCardRequestModel.php

@@ -22,7 +22,7 @@ trait HasResponse
     /**
      * İstekte belirtilen locale değeri geri dönülür, varsayılan değeri trdir.
      *
-     * @var
+     * @var mixed
      */
     public $locale;
 

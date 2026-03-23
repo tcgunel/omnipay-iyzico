@@ -10,30 +10,28 @@ class BinLookupRequestModel extends BaseModel
     /**
      * iyzico istek sonucunda dönen metinlerin dilini ayarlamak için kullanılır. Varsayılan değeri tr’dir.
      *
-     * @var
+     * @var string|null
      */
     public $locale;
 
     /**
      * İstek esnasında gönderip, sonuçta alabileceğiniz bir değer, request/response eşleşmesi yapmak için kullanılabilir.
      *
-     * @var
+     * @var string|null
      */
     public $conversationId;
 
     /**
      * Kredi veya Debit Kart numarasının ilk 6 hanesi. Örnek: 428220
      *
-     * @var
-     * @required
+     * @var string|null
      */
     public $binNumber;
 
     /**
      * Taksitlendirilmek istenen tutar bilgisi.
      *
-     * @var
-     * @required
+     * @var string|float|null
      */
     public $price;
 }

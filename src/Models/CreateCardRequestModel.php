@@ -17,7 +17,7 @@ class CreateCardRequestModel extends BaseModel
      * Mağaza kullanıcısını referans eden bilgi.
      *
      * @required
-     * @var
+     * @var mixed
      */
     public $userId;
 
@@ -25,7 +25,7 @@ class CreateCardRequestModel extends BaseModel
      * Mağaza kullanıcısını referans eden bilgi.
      *
      * @required
-     * @var
+     * @var mixed
      */
     public $cardOwnerName;
 
@@ -33,7 +33,7 @@ class CreateCardRequestModel extends BaseModel
      * Mağaza kullanıcısını referans eden bilgi.
      *
      * @required
-     * @var
+     * @var mixed
      */
     public $cardNumber;
 
@@ -41,7 +41,7 @@ class CreateCardRequestModel extends BaseModel
      * Kart rumuz bilgisi.
      *
      * @required
-     * @var
+     * @var mixed
      */
     public $cardAlias;
 
@@ -49,7 +49,7 @@ class CreateCardRequestModel extends BaseModel
      * Kart son kullanma tarihi ay parametresi. Uzunluk: 2 karakter. Örnek; 05,11, vb.
      *
      * @required
-     * @var
+     * @var mixed
      */
     public $cardExpireMonth;
 
@@ -57,7 +57,7 @@ class CreateCardRequestModel extends BaseModel
      * Kart son kullanma tarihi yıl parametresi. Uzunluk: 2 karakter. Örnek; 14,19, vb.
      *
      * @required
-     * @var
+     * @var mixed
      */
     public $cardExpireYear;
 
@@ -65,7 +65,7 @@ class CreateCardRequestModel extends BaseModel
      * Müşteri istemci IP adresi.
      *
      * @required
-     * @var
+     * @var mixed
      */
     public $clientIp = '127.0.0.1';
 }
