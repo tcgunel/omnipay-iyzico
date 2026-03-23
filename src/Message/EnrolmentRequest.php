@@ -2,7 +2,6 @@
 
 namespace Omnipay\Iyzico\Message;
 
-use Omnipay\Iyzico\Helpers\Helper;
 use Omnipay\Iyzico\Models\EnrolmentRequestModel;
 use Omnipay\Iyzico\Models\RequestHeadersModel;
 
@@ -11,7 +10,7 @@ use Omnipay\Iyzico\Models\RequestHeadersModel;
  */
 class EnrolmentRequest extends PurchaseRequest
 {
-    protected $endpoint = "/payment/3dsecure/initialize";
+    protected $endpoint = '/payment/3dsecure/initialize';
 
     /**
      * Get the XML registration string to be sent to the gateway
@@ -25,15 +24,15 @@ class EnrolmentRequest extends PurchaseRequest
     {
         $data = parent::getData();
 
-        $this->validate("secure", "returnUrl");
+        $this->validate('secure', 'returnUrl');
 
-        $data["request_params"] = (array)$data["request_params"];
+        $data['request_params'] = (array) $data['request_params'];
 
-        $data["request_params"]['callbackUrl'] = $this->getReturnUrl();
+        $data['request_params']['callbackUrl'] = $this->getReturnUrl();
 
-        $data["request_params"] = new EnrolmentRequestModel($data["request_params"]);
+        $data['request_params'] = new EnrolmentRequestModel($data['request_params']);
 
-        $data["headers"]->Authorization = $this->token($data["request_params"]);
+        $data['headers']->Authorization = $this->token($data['request_params']);
 
         return $data;
     }
@@ -46,11 +45,11 @@ class EnrolmentRequest extends PurchaseRequest
         $httpResponse = $this->httpClient->request(
             'POST',
             $this->getEndpoint(),
-            array_merge($data["headers"]->__toArray(), [
+            array_merge($data['headers']->__toArray(), [
                 'Content-Type' => 'application/json',
-                'Accept'       => 'application/json',
+                'Accept' => 'application/json',
             ]),
-            json_encode($data["request_params"], JSON_THROW_ON_ERROR)
+            json_encode($data['request_params'], JSON_THROW_ON_ERROR)
         );
 
         return $this->createResponse($httpResponse);

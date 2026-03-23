@@ -22,25 +22,25 @@ class VerifyEnrolmentRequest extends AbstractRequest
         $this->validateAll();
 
         $request_params = new VerifyEnrolmentRequestModel([
-            "status"           => $this->getStatus(),
-            "paymentId"        => $this->getPaymentId(),
-            "conversationData" => $this->getConversationData(),
-            "conversationId"   => $this->getConversationId(),
-            "mdStatus"         => $this->getMdStatus(),
+            'status' => $this->getStatus(),
+            'paymentId' => $this->getPaymentId(),
+            'conversationData' => $this->getConversationData(),
+            'conversationId' => $this->getConversationId(),
+            'mdStatus' => $this->getMdStatus(),
         ]);
 
         return [
-            "request_params" => $request_params,
+            'request_params' => $request_params,
         ];
     }
 
     protected function validateAll()
     {
         $this->validate(
-            "status",
-            "paymentId",
-            "conversationId",
-            "mdStatus",
+            'status',
+            'paymentId',
+            'conversationId',
+            'mdStatus',
         );
     }
 

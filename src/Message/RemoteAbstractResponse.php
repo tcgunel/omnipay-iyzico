@@ -12,28 +12,28 @@ use Psr\Http\Message\ResponseInterface;
  */
 abstract class RemoteAbstractResponse extends AbstractResponse
 {
-	protected $response;
+    protected $response;
 
-	protected $request;
+    protected $request;
 
     /**
      * @throws OmnipayIyzicoHashValidationException
      * @throws \JsonException
      */
-	public function __construct(RequestInterface $request, $data)
-	{
-		parent::__construct($request, $data);
+    public function __construct(RequestInterface $request, $data)
+    {
+        parent::__construct($request, $data);
 
-		$this->request = $request;
+        $this->request = $request;
 
-		$this->response = $data;
+        $this->response = $data;
 
-		if ($data instanceof ResponseInterface) {
+        if ($data instanceof ResponseInterface) {
 
-			$body = (string)$data->getBody();
+            $body = (string) $data->getBody();
 
             $this->response = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
 
-		}
-	}
+        }
+    }
 }

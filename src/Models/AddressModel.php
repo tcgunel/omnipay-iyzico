@@ -10,4 +10,3 @@ class AddressModel extends BaseModel
     public string $city;
     public string $country;
 }
-

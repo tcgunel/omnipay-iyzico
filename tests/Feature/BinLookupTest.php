@@ -19,7 +19,7 @@ class BinLookupTest extends TestCase
 
     public function test_bin_lookup_request()
     {
-        $options = file_get_contents(__DIR__ . "/../Mock/BinLookupRequest.json");
+        $options = file_get_contents(__DIR__ . '/../Mock/BinLookupRequest.json');
 
         $options = json_decode($options, true, 512, JSON_THROW_ON_ERROR);
 
@@ -31,14 +31,14 @@ class BinLookupTest extends TestCase
 
         $expected = [
             'request_params' => new BinLookupRequestModel([
-                'price'          => "1.0",
-                'binNumber'      => '545616',
+                'price' => '1.0',
+                'binNumber' => '545616',
                 'conversationId' => '123456',
-                'threeD'         => true,
+                'threeD' => true,
             ]),
-            'headers'        => new RequestHeadersModel([
-                'Authorization'         => "IYZWS sandbox-public:e92bdp3cKAgn3iL7MSGcMhclFqY=",
-                'x_iyzi_rnd'            => $this->x_iyzi_rnd,
+            'headers' => new RequestHeadersModel([
+                'Authorization' => 'IYZWSv2 YXBpS2V5OnNhbmRib3gtcHVibGljJnJhbmRvbUtleTpURVNUX1JBTkQmc2lnbmF0dXJlOmNkOWU5ZWJmNDg2ZjA1NWY4YWI0OTU2NjViZWI2YThiMGM3NTJkNjYzZTIyMzBhNTkzMzA5YTFkMmY1MjlhMWI=',
+                'x_iyzi_rnd' => $this->x_iyzi_rnd,
                 'x_iyzi_client_version' => $this->x_iyzi_client_version,
             ]),
         ];
@@ -48,7 +48,7 @@ class BinLookupTest extends TestCase
 
     public function test_bin_lookup_request_validation_error()
     {
-        $options = file_get_contents(__DIR__ . "/../Mock/BinLookupRequest-ValidationError.json");
+        $options = file_get_contents(__DIR__ . '/../Mock/BinLookupRequest-ValidationError.json');
 
         $options = json_decode($options, true, 512, JSON_THROW_ON_ERROR);
 
@@ -73,55 +73,55 @@ class BinLookupTest extends TestCase
         $data = $response->getData();
 
         $expected = [
-            'status'             => "success",
-            'locale'             => "en",
-            'systemTime'         => 1656319733717,
-            'conversationId'     => "123456789",
+            'status' => 'success',
+            'locale' => 'en',
+            'systemTime' => 1656319733717,
+            'conversationId' => '123456789',
             'installmentDetails' => [
                 [
-                    "binNumber"         => "554960",
-                    "price"             => 100,
-                    "cardType"          => "CREDIT_CARD",
-                    "cardAssociation"   => "MASTER_CARD",
-                    "cardFamilyName"    => "Bonus",
-                    "force3ds"          => 0,
-                    "bankCode"          => 62,
-                    "bankName"          => "Garanti Bankasi",
-                    "forceCvc"          => 0,
-                    "commercial"        => 0,
-                    "installmentPrices" => [
+                    'binNumber' => '554960',
+                    'price' => 100,
+                    'cardType' => 'CREDIT_CARD',
+                    'cardAssociation' => 'MASTER_CARD',
+                    'cardFamilyName' => 'Bonus',
+                    'force3ds' => 0,
+                    'bankCode' => 62,
+                    'bankName' => 'Garanti Bankasi',
+                    'forceCvc' => 0,
+                    'commercial' => 0,
+                    'installmentPrices' => [
                         [
-                            "installmentPrice"  => 100,
-                            "totalPrice"        => 100,
-                            "installmentNumber" => 1
+                            'installmentPrice' => 100,
+                            'totalPrice' => 100,
+                            'installmentNumber' => 1,
                         ],
                         [
-                            "installmentPrice"  => 50.53,
-                            "totalPrice"        => 101.05,
-                            "installmentNumber" => 2
+                            'installmentPrice' => 50.53,
+                            'totalPrice' => 101.05,
+                            'installmentNumber' => 2,
                         ],
                         [
-                            "installmentPrice"  => 34.04,
-                            "totalPrice"        => 102.13,
-                            "installmentNumber" => 3
+                            'installmentPrice' => 34.04,
+                            'totalPrice' => 102.13,
+                            'installmentNumber' => 3,
                         ],
                         [
-                            "installmentPrice"  => 17.2,
-                            "totalPrice"        => 103.23,
-                            "installmentNumber" => 6
+                            'installmentPrice' => 17.2,
+                            'totalPrice' => 103.23,
+                            'installmentNumber' => 6,
                         ],
                         [
-                            "installmentPrice"  => 11.85,
-                            "totalPrice"        => 106.67,
-                            "installmentNumber" => 9
+                            'installmentPrice' => 11.85,
+                            'totalPrice' => 106.67,
+                            'installmentNumber' => 9,
                         ],
                         [
-                            "installmentPrice"  => 9.2,
-                            "totalPrice"        => 110.34,
-                            "installmentNumber" => 12
+                            'installmentPrice' => 9.2,
+                            'totalPrice' => 110.34,
+                            'installmentNumber' => 12,
                         ],
-                    ]
-                ]
+                    ],
+                ],
             ],
         ];
 
@@ -144,8 +144,8 @@ class BinLookupTest extends TestCase
         $this->assertFalse($response->isSuccessful());
 
         $this->assertEquals(new BinLookupResponseModel([
-            'status'       => "failure",
-            'errorMessage' => 'Bin lookup failed.'
+            'status' => 'failure',
+            'errorMessage' => 'Bin lookup failed.',
         ]), $data);
     }
 }

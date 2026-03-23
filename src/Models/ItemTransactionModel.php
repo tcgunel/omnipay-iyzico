@@ -27,4 +27,3 @@ class ItemTransactionModel extends BaseModel
      */
     public $convertedPayout;
 }
-

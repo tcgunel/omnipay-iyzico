@@ -26,8 +26,8 @@ class Helper
     {
         $price = number_format($price, 2, '.', '');
 
-        if (!str_contains($price, ".")) {
-            $var = $price . ".0";
+        if (!str_contains($price, '.')) {
+            $var = $price . '.0';
         }
 
         $subStrIndex = 0;
@@ -36,10 +36,10 @@ class Helper
 
         for ($i = 0, $iMax = strlen($priceReversed); $i < $iMax; $i++) {
 
-            if (strcmp($priceReversed[$i], "0") == 0) {
+            if (strcmp($priceReversed[$i], '0') == 0) {
                 $subStrIndex = $i + 1;
-            } else if (strcmp($priceReversed[$i], ".") == 0) {
-                $priceReversed = "0" . $priceReversed;
+            } elseif (strcmp($priceReversed[$i], '.') == 0) {
+                $priceReversed = '0' . $priceReversed;
                 break;
             } else {
                 break;
@@ -59,8 +59,8 @@ class Helper
     {
         $price = number_format($price, 2, '.', '');
 
-        if (!str_contains($price, ".")) {
-            $var = $price . ".0";
+        if (!str_contains($price, '.')) {
+            $var = $price . '.0';
         }
 
         $subStrIndex = 0;
@@ -69,10 +69,10 @@ class Helper
 
         for ($i = 0, $iMax = strlen($priceReversed); $i < $iMax; $i++) {
 
-            if (strcmp($priceReversed[$i], "0") == 0) {
+            if (strcmp($priceReversed[$i], '0') == 0) {
                 $subStrIndex = $i + 1;
-            } else if (strcmp($priceReversed[$i], ".") == 0) {
-                $priceReversed = "0" . $priceReversed;
+            } elseif (strcmp($priceReversed[$i], '.') == 0) {
+                $priceReversed = '0' . $priceReversed;
                 break;
             } else {
                 break;
@@ -110,9 +110,9 @@ class Helper
 
     public static function hash(?string $publicKey, string $privateKey, array $appends, string $random_string): string
     {
-//        $append  = array_map(fn($key) => "$key=$appends[$key]", array_keys($appends));
+        //        $append  = array_map(fn($key) => "$key=$appends[$key]", array_keys($appends));
         $append = [];
-        $a      = '';
+        $a = '';
 
         self::buildBackets(null, $appends, $a);
 
@@ -164,7 +164,7 @@ class Helper
 
     public static function prettyPrint($data)
     {
-        echo "<pre>" . print_r($data, true) . "</pre>";
+        echo '<pre>' . print_r($data, true) . '</pre>';
     }
 
     public static function format_installmentDetails($input, &$var)

@@ -1,0 +1,181 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Access to an undefined property Omnipay\\\\Iyzico\\\\Gateway\\:\\:\\$endpoint\\.$#"
+			count: 1
+			path: src/Gateway.php
+
+		-
+			message: "#^Call to function is_null\\(\\) with string will always evaluate to false\\.$#"
+			count: 1
+			path: src/Message/BinLookupRequest.php
+
+		-
+			message: "#^Result of && is always true\\.$#"
+			count: 1
+			path: src/Message/BinLookupRequest.php
+
+		-
+			message: "#^Ternary operator condition is always true\\.$#"
+			count: 1
+			path: src/Message/BinLookupRequest.php
+
+		-
+			message: "#^Method Omnipay\\\\Iyzico\\\\Message\\\\BinLookupResponse\\:\\:getRedirectData\\(\\) should return array but returns null\\.$#"
+			count: 1
+			path: src/Message/BinLookupResponse.php
+
+		-
+			message: "#^Return type \\(array\\{request_params\\: Omnipay\\\\Iyzico\\\\Models\\\\ChargeRequestModel, headers\\: Omnipay\\\\Iyzico\\\\Models\\\\RequestHeadersModel\\}\\) of method Omnipay\\\\Iyzico\\\\Message\\\\ChargeRequest\\:\\:getData\\(\\) should be compatible with return type \\(array\\{request_params\\: array, headers\\: Omnipay\\\\Iyzico\\\\Models\\\\RequestHeadersModel\\}\\) of method Omnipay\\\\Iyzico\\\\Message\\\\PurchaseRequest\\:\\:getData\\(\\)$#"
+			count: 1
+			path: src/Message/ChargeRequest.php
+
+		-
+			message: "#^Method Omnipay\\\\Iyzico\\\\Message\\\\ChargeResponse\\:\\:getRedirectData\\(\\) should return array but returns null\\.$#"
+			count: 1
+			path: src/Message/ChargeResponse.php
+
+		-
+			message: "#^Method Omnipay\\\\Iyzico\\\\Message\\\\CheckoutFormInquiryResponse\\:\\:getRedirectData\\(\\) should return array but returns null\\.$#"
+			count: 1
+			path: src/Message/CheckoutFormInquiryResponse.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Message/CheckoutFormRequest.php
+
+		-
+			message: "#^Method Omnipay\\\\Iyzico\\\\Message\\\\CheckoutFormRequest\\:\\:getData\\(\\) should return array\\{request_params\\: array, headers\\: Omnipay\\\\Iyzico\\\\Models\\\\RequestHeadersModel\\} but returns array\\{request_params\\: Omnipay\\\\Iyzico\\\\Models\\\\CheckoutFormRequestModel, headers\\: Omnipay\\\\Iyzico\\\\Models\\\\RequestHeadersModel\\}\\.$#"
+			count: 1
+			path: src/Message/CheckoutFormRequest.php
+
+		-
+			message: "#^Call to an undefined method Omnipay\\\\Common\\\\Message\\\\RequestInterface\\:\\:getIsCheckoutInIframe\\(\\)\\.$#"
+			count: 1
+			path: src/Message/CheckoutFormResponse.php
+
+		-
+			message: "#^Method Omnipay\\\\Iyzico\\\\Message\\\\CompletePurchaseResponse\\:\\:getRedirectData\\(\\) should return array but returns null\\.$#"
+			count: 1
+			path: src/Message/CompletePurchaseResponse.php
+
+		-
+			message: "#^Method Omnipay\\\\Iyzico\\\\Message\\\\EnrolmentRequest\\:\\:getData\\(\\) should return array\\{request_params\\: array, headers\\: Omnipay\\\\Iyzico\\\\Models\\\\RequestHeadersModel\\} but returns array\\{request_params\\: Omnipay\\\\Iyzico\\\\Models\\\\EnrolmentRequestModel, headers\\: Omnipay\\\\Iyzico\\\\Models\\\\RequestHeadersModel\\}\\.$#"
+			count: 1
+			path: src/Message/EnrolmentRequest.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Message/PayWithIyzicoRequest.php
+
+		-
+			message: "#^Method Omnipay\\\\Iyzico\\\\Message\\\\PayWithIyzicoRequest\\:\\:getData\\(\\) should return array\\{request_params\\: array, headers\\: Omnipay\\\\Iyzico\\\\Models\\\\RequestHeadersModel\\} but returns array\\{request_params\\: Omnipay\\\\Iyzico\\\\Models\\\\PayWithIyzicoRequestModel, headers\\: Omnipay\\\\Iyzico\\\\Models\\\\RequestHeadersModel\\}\\.$#"
+			count: 1
+			path: src/Message/PayWithIyzicoRequest.php
+
+		-
+			message: "#^Method Omnipay\\\\Iyzico\\\\Message\\\\PaymentInquiryResponse\\:\\:getRedirectData\\(\\) should return array but returns null\\.$#"
+			count: 1
+			path: src/Message/PaymentInquiryResponse.php
+
+		-
+			message: "#^Access to an undefined property Omnipay\\\\Iyzico\\\\Message\\\\PurchaseRequest\\:\\:\\$endpoint\\.$#"
+			count: 2
+			path: src/Message/PurchaseRequest.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 1
+			path: src/Message/PurchaseRequest.php
+
+		-
+			message: "#^Method Omnipay\\\\Iyzico\\\\Message\\\\PurchaseRequest\\:\\:getData\\(\\) should return array\\{request_params\\: array, headers\\: Omnipay\\\\Iyzico\\\\Models\\\\RequestHeadersModel\\} but returns array\\{request_params\\: Omnipay\\\\Iyzico\\\\Models\\\\ChargeRequestModel, headers\\: Omnipay\\\\Iyzico\\\\Models\\\\RequestHeadersModel\\}\\.$#"
+			count: 1
+			path: src/Message/PurchaseRequest.php
+
+		-
+			message: "#^Method Omnipay\\\\Iyzico\\\\Message\\\\PurchaseRequest\\:\\:sendData\\(\\) should return Omnipay\\\\Common\\\\Message\\\\ResponseInterface but return statement is missing\\.$#"
+			count: 1
+			path: src/Message/PurchaseRequest.php
+
+		-
+			message: "#^Access to an undefined property Omnipay\\\\Iyzico\\\\Message\\\\RemoteAbstractRequest\\:\\:\\$endpoint\\.$#"
+			count: 1
+			path: src/Message/RemoteAbstractRequest.php
+
+		-
+			message: "#^Ternary operator condition is always true\\.$#"
+			count: 1
+			path: src/Message/RemoteAbstractRequest.php
+
+		-
+			message: "#^Access to an undefined property Omnipay\\\\Iyzico\\\\Message\\\\VerifyEnrolmentRequest\\:\\:\\$endpoint\\.$#"
+			count: 1
+			path: src/Message/VerifyEnrolmentRequest.php
+
+		-
+			message: "#^Method Omnipay\\\\Iyzico\\\\Message\\\\VerifyEnrolmentRequest\\:\\:getData\\(\\) should return array\\{request_params\\: array, headers\\: Omnipay\\\\Iyzico\\\\Models\\\\RequestHeadersModel\\} but returns array\\{request_params\\: Omnipay\\\\Iyzico\\\\Models\\\\VerifyEnrolmentRequestModel\\}\\.$#"
+			count: 1
+			path: src/Message/VerifyEnrolmentRequest.php
+
+		-
+			message: "#^Method Omnipay\\\\Iyzico\\\\Message\\\\VerifyEnrolmentResponse\\:\\:getRedirectData\\(\\) should return array but returns null\\.$#"
+			count: 1
+			path: src/Message/VerifyEnrolmentResponse.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 137$#"
+			count: 1
+			path: src/Models/BinLookupRequestModel.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 154$#"
+			count: 1
+			path: src/Models/BinLookupRequestModel.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \\* \", expected type at offset 70$#"
+			count: 1
+			path: src/Models/BinLookupRequestModel.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n\\\\t \\* \", expected type at offset 85$#"
+			count: 1
+			path: src/Models/BinLookupRequestModel.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 108$#"
+			count: 1
+			path: src/Models/BinLookupResponseModel.php
+
+		-
+			message: "#^PHPDoc tag @var does not specify variable name\\.$#"
+			count: 1
+			path: src/Models/ChargeRequestModel.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 127$#"
+			count: 1
+			path: src/Models/CreateCardRequestModel.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 129$#"
+			count: 1
+			path: src/Models/CreateCardRequestModel.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 66$#"
+			count: 1
+			path: src/Models/CreateCardRequestModel.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 75$#"
+			count: 1
+			path: src/Models/CreateCardRequestModel.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\)\\: Unexpected token \"\\\\n     \", expected type at offset 93$#"
+			count: 3
+			path: src/Models/CreateCardRequestModel.php

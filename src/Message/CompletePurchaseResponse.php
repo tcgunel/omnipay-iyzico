@@ -11,7 +11,7 @@ class CompletePurchaseResponse extends RemoteAbstractResponse
     {
         parent::__construct($request, $data);
 
-        $this->response = new CompletePurchaseResponseModel((array)$this->response);
+        $this->response = new CompletePurchaseResponseModel((array) $this->response);
     }
 
     public function getData(): CompletePurchaseResponseModel
@@ -21,7 +21,7 @@ class CompletePurchaseResponse extends RemoteAbstractResponse
 
     public function isSuccessful(): bool
     {
-        return $this->response->status === "success";
+        return $this->response->status === 'success';
     }
 
     public function getMessage(): ?string

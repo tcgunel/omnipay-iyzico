@@ -13,4 +13,3 @@ class EnrolmentResponseModel extends BaseModel
     public string $conversationId;
     public string $threeDSHtmlContent;
 }
-

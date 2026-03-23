@@ -18,4 +18,3 @@ class PayWithIyzicoResponseModel extends BaseModel
     public string $errorMessage;
     public string $errorGroup;
 }
-

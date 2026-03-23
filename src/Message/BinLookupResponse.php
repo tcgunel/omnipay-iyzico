@@ -11,77 +11,77 @@ use Psr\Http\Message\ResponseInterface;
 
 class BinLookupResponse extends AbstractResponse
 {
-	protected $response;
+    protected $response;
 
-	protected $request;
+    protected $request;
 
-	public function __construct(RequestInterface $request, $data)
-	{
-		parent::__construct($request, $data);
+    public function __construct(RequestInterface $request, $data)
+    {
+        parent::__construct($request, $data);
 
-		$this->request = $request;
+        $this->request = $request;
 
-		$this->response = $data;
+        $this->response = $data;
 
-		if ($data instanceof ResponseInterface) {
+        if ($data instanceof ResponseInterface) {
 
-			$body = (string)$data->getBody();
+            $body = (string) $data->getBody();
 
-			try {
+            try {
 
-				$data = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
+                $data = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
 
                 $data['rawResult'] = preg_replace('/\n+/', '', $body);
 
-				$this->response = new BinLookupResponseModel($data);
+                $this->response = new BinLookupResponseModel($data);
 
-				if (!$this->isSuccessful()) {
+                if (!$this->isSuccessful()) {
 
-					throw new OmnipayIyzicoBinLookupException('Bin lookup failed.');
+                    throw new OmnipayIyzicoBinLookupException('Bin lookup failed.');
 
-				}
+                }
 
-			} catch (JsonException $e) {
+            } catch (JsonException $e) {
 
-				$this->response = new BinLookupResponseModel([
-					"status"       => "failure",
-					"errorMessage" => $body,
-				]);
+                $this->response = new BinLookupResponseModel([
+                    'status' => 'failure',
+                    'errorMessage' => $body,
+                ]);
 
-			} catch (OmnipayIyzicoBinLookupException $e) {
+            } catch (OmnipayIyzicoBinLookupException $e) {
 
-				$this->response = new BinLookupResponseModel([
-					"status"       => "failure",
-					"errorMessage" => $e->getMessage(),
-				]);
+                $this->response = new BinLookupResponseModel([
+                    'status' => 'failure',
+                    'errorMessage' => $e->getMessage(),
+                ]);
 
-			}
+            }
 
-		}
-	}
+        }
+    }
 
-	public function isSuccessful(): bool
-	{
-		return $this->response->status === 'success';
-	}
+    public function isSuccessful(): bool
+    {
+        return $this->response->status === 'success';
+    }
 
-	public function getMessage(): string
-	{
-		return $this->response->errorMessage;
-	}
+    public function getMessage(): string
+    {
+        return $this->response->errorMessage;
+    }
 
-	public function getData(): BinLookupResponseModel
-	{
-		return $this->response;
-	}
+    public function getData(): BinLookupResponseModel
+    {
+        return $this->response;
+    }
 
-	public function getRedirectData()
-	{
-		return null;
-	}
+    public function getRedirectData()
+    {
+        return null;
+    }
 
-	public function getRedirectUrl(): string
-	{
-		return '';
-	}
+    public function getRedirectUrl(): string
+    {
+        return '';
+    }
 }

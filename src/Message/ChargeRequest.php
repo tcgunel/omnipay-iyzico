@@ -20,7 +20,7 @@ class ChargeRequest extends PurchaseRequest
     {
         $data = parent::getData();
 
-        $data["request_params"] = new ChargeRequestModel((array)$data["request_params"]);
+        $data['request_params'] = new ChargeRequestModel((array) $data['request_params']);
 
         return $data;
     }
@@ -35,16 +35,14 @@ class ChargeRequest extends PurchaseRequest
 
         $this->getCard()->validate();
 
-//        }
+        //        }
 
         $this->validateAdditionalCardFields(
             'email',
-
             'billingName',
             'billingCity',
             'billingCountry',
             'billingAddress1',
-
             'shippingName',
             'shippingCity',
             'shippingCountry',
@@ -52,18 +50,15 @@ class ChargeRequest extends PurchaseRequest
         );
 
         $this->validate(
-            "amount",
-            "currency",
-            "installment",
-
-            "userReference",
-            "nationalId",
-            "clientIp",
-
-            "items",
-
-            "privateKey",
-            "publicKey",
+            'amount',
+            'currency',
+            'installment',
+            'userReference',
+            'nationalId',
+            'clientIp',
+            'items',
+            'privateKey',
+            'publicKey',
         );
     }
 
@@ -87,11 +82,11 @@ class ChargeRequest extends PurchaseRequest
         $httpResponse = $this->httpClient->request(
             'POST',
             $this->getEndpoint(),
-            array_merge($data["headers"]->__toArray(), [
+            array_merge($data['headers']->__toArray(), [
                 'Content-Type' => 'application/json',
-                'Accept'       => 'application/json',
+                'Accept' => 'application/json',
             ]),
-            json_encode($data["request_params"], JSON_THROW_ON_ERROR)
+            json_encode($data['request_params'], JSON_THROW_ON_ERROR)
         );
 
         return $this->createResponse($httpResponse);

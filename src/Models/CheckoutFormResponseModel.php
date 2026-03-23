@@ -18,4 +18,3 @@ class CheckoutFormResponseModel extends BaseModel
     public string $errorMessage;
     public string $errorGroup;
 }
-

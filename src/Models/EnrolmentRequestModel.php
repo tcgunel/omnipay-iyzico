@@ -9,5 +9,5 @@ class EnrolmentRequestModel extends PurchaseRequestModel
         parent::__construct($abstract);
     }
 
-    public string $callbackUrl = "";
+    public string $callbackUrl = '';
 }

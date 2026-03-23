@@ -2,6 +2,6 @@
 
 namespace Omnipay\Iyzico\Exceptions;
 
-class OmnipayIyzicoBinLookupException extends \Exception{
-
+class OmnipayIyzicoBinLookupException extends \Exception
+{
 }

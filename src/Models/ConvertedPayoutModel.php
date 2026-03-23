@@ -16,4 +16,3 @@ class ConvertedPayoutModel extends BaseModel
     public string $currency;
 
 }
-

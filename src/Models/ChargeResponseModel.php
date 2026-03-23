@@ -54,4 +54,3 @@ class ChargeResponseModel extends BaseModel
     public string $phase;
     public string $hostReference;
 }
-

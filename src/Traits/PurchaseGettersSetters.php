@@ -4,49 +4,49 @@ namespace Omnipay\Iyzico\Traits;
 
 trait PurchaseGettersSetters
 {
-	public function getPrivateKey()
-	{
-		return $this->getParameter('privateKey');
-	}
+    public function getPrivateKey()
+    {
+        return $this->getParameter('privateKey');
+    }
 
-	public function setPrivateKey($value)
-	{
-		return $this->setParameter('privateKey', $value);
-	}
+    public function setPrivateKey($value)
+    {
+        return $this->setParameter('privateKey', $value);
+    }
 
-	public function getPublicKey()
-	{
-		return $this->getParameter('publicKey');
-	}
+    public function getPublicKey()
+    {
+        return $this->getParameter('publicKey');
+    }
 
-	public function setPublicKey($value)
-	{
-		return $this->setParameter('publicKey', $value);
-	}
+    public function setPublicKey($value)
+    {
+        return $this->setParameter('publicKey', $value);
+    }
 
-	public function getLanguage()
-	{
-		return $this->getParameter('language');
-	}
+    public function getLanguage()
+    {
+        return $this->getParameter('language');
+    }
 
-	public function setLanguage($value)
-	{
-		return $this->setParameter('language', $value);
-	}
+    public function setLanguage($value)
+    {
+        return $this->setParameter('language', $value);
+    }
 
-	public function getSecure()
-	{
-		return $this->getParameter('secure');
-	}
+    public function getSecure()
+    {
+        return $this->getParameter('secure');
+    }
 
-	public function setSecure($value)
-	{
-		return $this->setParameter('secure', $value);
-	}
-	public function getEndpoint()
-	{
-		return ($this->getTestMode() ? 'https://sandbox-api.iyzipay.com' : 'https://api.iyzipay.com') . $this->endpoint;
-	}
+    public function setSecure($value)
+    {
+        return $this->setParameter('secure', $value);
+    }
+    public function getEndpoint()
+    {
+        return ($this->getTestMode() ? 'https://sandbox-api.iyzipay.com' : 'https://api.iyzipay.com') . $this->endpoint;
+    }
 
     public function getRandomString()
     {
@@ -208,43 +208,43 @@ trait PurchaseGettersSetters
         return $this->setParameter('mdStatus', $value);
     }
 
-	public function getPaymentSource()
-	{
-		return $this->getParameter('paymentSource');
-	}
+    public function getPaymentSource()
+    {
+        return $this->getParameter('paymentSource');
+    }
 
-	public function setPaymentSource($value)
-	{
-		return $this->setParameter('paymentSource', $value);
-	}
+    public function setPaymentSource($value)
+    {
+        return $this->setParameter('paymentSource', $value);
+    }
 
-	public function getIsCheckoutInIframe()
-	{
-		return $this->getParameter('isCheckoutInIframe');
-	}
+    public function getIsCheckoutInIframe()
+    {
+        return $this->getParameter('isCheckoutInIframe');
+    }
 
-	public function setIsCheckoutInIframe($value)
-	{
-		return $this->setParameter('isCheckoutInIframe', $value);
-	}
+    public function setIsCheckoutInIframe($value)
+    {
+        return $this->setParameter('isCheckoutInIframe', $value);
+    }
 
-	public function getToken()
-	{
-		return $this->getParameter('token');
-	}
+    public function getToken()
+    {
+        return $this->getParameter('token');
+    }
 
-	public function setToken($value)
-	{
-		return $this->setParameter('token', $value);
-	}
+    public function setToken($value)
+    {
+        return $this->setParameter('token', $value);
+    }
 
-	public function getEnabledInstallments()
-	{
-		return $this->getParameter('enabledInstallments');
-	}
+    public function getEnabledInstallments()
+    {
+        return $this->getParameter('enabledInstallments');
+    }
 
-	public function setEnabledInstallments($value)
-	{
-		return $this->setParameter('enabledInstallments', $value);
-	}
+    public function setEnabledInstallments($value)
+    {
+        return $this->setParameter('enabledInstallments', $value);
+    }
 }

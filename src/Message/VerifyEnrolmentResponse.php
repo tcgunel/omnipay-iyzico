@@ -3,21 +3,20 @@
 namespace Omnipay\Iyzico\Message;
 
 use Omnipay\Common\Message\RequestInterface;
-use Omnipay\Iyzico\Helpers\Helper;
 use Omnipay\Iyzico\Models\VerifyEnrolmentRequestModel;
 
 class VerifyEnrolmentResponse extends RemoteAbstractResponse
 {
     protected array $mdStatusMessages = [
-        0 => "3-D Secure imzası geçersiz veya doğrulama",
-        1 => "",
-        2 => "Kart sahibi veya bankası sisteme kayıtlı değil",
-        3 => "Kartın bankası sisteme kayıtlı değil",
-        4 => "Doğrulama denemesi, kart sahibi sisteme daha sonra kayıt olmayı seçmiş",
-        5 => "Doğrulama yapılamıyor",
-        6 => "3-D Secure hatası",
-        7 => "Sistem hatası",
-        8 => "Bilinmeyen kart no",
+        0 => '3-D Secure imzası geçersiz veya doğrulama',
+        1 => '',
+        2 => 'Kart sahibi veya bankası sisteme kayıtlı değil',
+        3 => 'Kartın bankası sisteme kayıtlı değil',
+        4 => 'Doğrulama denemesi, kart sahibi sisteme daha sonra kayıt olmayı seçmiş',
+        5 => 'Doğrulama yapılamıyor',
+        6 => '3-D Secure hatası',
+        7 => 'Sistem hatası',
+        8 => 'Bilinmeyen kart no',
     ];
 
     public function __construct(RequestInterface $request, VerifyEnrolmentRequestModel $data)

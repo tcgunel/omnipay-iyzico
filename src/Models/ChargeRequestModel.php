@@ -29,7 +29,7 @@ class ChargeRequestModel extends PurchaseRequestModel
      * @required
      * @var boolean
      */
-//    public $threeD = false;
+    //    public $threeD = false;
 
     /**
      * 3D Secure onay kodu.
@@ -37,5 +37,5 @@ class ChargeRequestModel extends PurchaseRequestModel
      * @required
      * @var string
      */
-//    public $threeDSecureCode = "";
+    //    public $threeDSecureCode = "";
 }

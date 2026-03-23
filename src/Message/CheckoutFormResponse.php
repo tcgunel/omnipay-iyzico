@@ -8,41 +8,41 @@ use Omnipay\Iyzico\Models\CheckoutFormResponseModel;
 
 class CheckoutFormResponse extends RemoteAbstractResponse implements RedirectResponseInterface
 {
-	public function __construct(RequestInterface $request, $data)
-	{
-		parent::__construct($request, $data);
+    public function __construct(RequestInterface $request, $data)
+    {
+        parent::__construct($request, $data);
 
-		$this->response = new CheckoutFormResponseModel((array)$this->response);
-	}
+        $this->response = new CheckoutFormResponseModel((array) $this->response);
+    }
 
-	public function getData(): CheckoutFormResponseModel
-	{
-		return $this->response;
-	}
+    public function getData(): CheckoutFormResponseModel
+    {
+        return $this->response;
+    }
 
-	public function isSuccessful(): bool
-	{
-		return $this->response->status === 'success';
-	}
+    public function isSuccessful(): bool
+    {
+        return $this->response->status === 'success';
+    }
 
-	public function getMessage(): string
-	{
-		return $this->response->errorMessage;
-	}
+    public function getMessage(): string
+    {
+        return $this->response->errorMessage;
+    }
 
-	public function isRedirect(): bool
-	{
-		return $this->response->status === 'success';
-	}
+    public function isRedirect(): bool
+    {
+        return $this->response->status === 'success';
+    }
 
-	public function getRedirectUrl()
-	{
+    public function getRedirectUrl()
+    {
         $appends = '';
 
-        if ($this->getRequest()->getIsCheckoutInIframe()){
+        if ($this->getRequest()->getIsCheckoutInIframe()) {
             $appends = '&iframe=true';
         }
 
-		return $this->response->paymentPageUrl . $appends;
-	}
+        return $this->response->paymentPageUrl . $appends;
+    }
 }

@@ -9,64 +9,64 @@ use Psr\Http\Message\ResponseInterface;
 
 class CheckoutFormInquiryResponse extends AbstractResponse
 {
-	protected $response;
+    protected $response;
 
-	protected $request;
+    protected $request;
 
-	public function __construct(RequestInterface $request, $data)
-	{
-		parent::__construct($request, $data);
+    public function __construct(RequestInterface $request, $data)
+    {
+        parent::__construct($request, $data);
 
-		$this->request = $request;
+        $this->request = $request;
 
-		$this->response = $data;
+        $this->response = $data;
 
-		if ($data instanceof ResponseInterface) {
+        if ($data instanceof ResponseInterface) {
 
-			$body = (string)$data->getBody();
+            $body = (string) $data->getBody();
 
-			try {
+            try {
 
-				$data = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
+                $data = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
 
                 $data['rawResult'] = preg_replace('/\n+/', '', $body);
 
-				$this->response = $data;
+                $this->response = $data;
 
-			} catch (JsonException $e) {
+            } catch (JsonException $e) {
 
-				$this->response = [
-					'status'       => 'failure',
-					'errorMessage' => $e->getMessage(),
-					'data' => $body
-				];
+                $this->response = [
+                    'status' => 'failure',
+                    'errorMessage' => $e->getMessage(),
+                    'data' => $body,
+                ];
 
-			}
-		}
-	}
+            }
+        }
+    }
 
-	public function isSuccessful(): bool
-	{
+    public function isSuccessful(): bool
+    {
         return isset($this->response['paymentStatus']) && in_array($this->response['paymentStatus'], ['SUCCESS', 'INIT_CREDIT', 'PENDING_CREDIT', 'INIT_BANK_TRANSFER']);
-	}
+    }
 
-	public function getMessage(): string
-	{
-		return $this->response['errorMessage'];
-	}
+    public function getMessage(): string
+    {
+        return $this->response['errorMessage'];
+    }
 
-	public function getData(): array
-	{
-		return $this->response;
-	}
+    public function getData(): array
+    {
+        return $this->response;
+    }
 
-	public function getRedirectData()
-	{
-		return null;
-	}
+    public function getRedirectData()
+    {
+        return null;
+    }
 
-	public function getRedirectUrl(): string
-	{
-		return '';
-	}
+    public function getRedirectUrl(): string
+    {
+        return '';
+    }
 }

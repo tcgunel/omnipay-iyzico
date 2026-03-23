@@ -21,13 +21,13 @@ class BinLookupRequestModel extends BaseModel
      */
     public $conversationId;
 
-	/**
-	 * Kredi veya Debit Kart numarasının ilk 6 hanesi. Örnek: 428220
-	 *
-	 * @var
-	 * @required
-	 */
-	public $binNumber;
+    /**
+     * Kredi veya Debit Kart numarasının ilk 6 hanesi. Örnek: 428220
+     *
+     * @var
+     * @required
+     */
+    public $binNumber;
 
     /**
      * Taksitlendirilmek istenen tutar bilgisi.

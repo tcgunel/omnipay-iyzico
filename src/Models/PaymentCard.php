@@ -11,4 +11,3 @@ class PaymentCard extends BaseModel
     public string $cvc;
     public int $registerCard;
 }
-

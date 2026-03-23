@@ -13,7 +13,7 @@ use Omnipay\Iyzico\Models\RequestHeadersModel;
 
 class CheckoutFormRequest extends RemoteAbstractRequest
 {
-    protected $endpoint = "/payment/iyzipos/checkoutform/initialize/auth/ecom";
+    protected $endpoint = '/payment/iyzipos/checkoutform/initialize/auth/ecom';
 
     /**
      * Get the XML registration string to be sent to the gateway
@@ -28,57 +28,57 @@ class CheckoutFormRequest extends RemoteAbstractRequest
         $this->validateAll();
 
         $request_params = new CheckoutFormRequestModel([
-            'locale'         => $this->getLanguage(),
+            'locale' => $this->getLanguage(),
             'conversationId' => $this->getTransactionId(),
-            'price'          => array_sum(array_map(static fn(Item $item) => $item->getPrice(), $this->getItems()?->all())),
-            'paidPrice'      => $this->getAmount(),
-            'currency'       => $this->getCurrency(),
-            'basketId'       => $this->getBasketId() ?? $this->getTransactionId(),
-            'paymentGroup'   => $this->getPaymentGroup(),
-            'paymentSource'  => $this->getPaymentSource() ?? '',
-            'callbackUrl'    => $this->getReturnUrl(),
+            'price' => array_sum(array_map(static fn (Item $item) => $item->getPrice(), $this->getItems()?->all())),
+            'paidPrice' => $this->getAmount(),
+            'currency' => $this->getCurrency(),
+            'basketId' => $this->getBasketId() ?? $this->getTransactionId(),
+            'paymentGroup' => $this->getPaymentGroup(),
+            'paymentSource' => $this->getPaymentSource() ?? '',
+            'callbackUrl' => $this->getReturnUrl(),
             'enabledInstallments' => $this->getEnabledInstallments(),
 
             'buyer' => new PurchaserModel([
 
-                'id'                  => $this->getUserReference(),
-                'name'                => $this->get_card('getBillingFirstName'),
-                'surname'             => $this->get_card('getBillingLastName'),
-                'identityNumber'      => $this->getNationalId() ?? '11111111111',
-                'city'                => $this->get_card('getShippingCity'),
-                'country'             => $this->get_card('getShippingCountry'),
-                'email'               => $this->get_card('getEmail') ?? 'required-dummy@email.com',
-                'gsmNumber'           => implode('', [$this->get_card('getPhoneExtension'), $this->get_card('getPhone')]),
-                'ip'                  => $this->getClientIp() ?? '127.0.0.1',
+                'id' => $this->getUserReference(),
+                'name' => $this->get_card('getBillingFirstName'),
+                'surname' => $this->get_card('getBillingLastName'),
+                'identityNumber' => $this->getNationalId() ?? '11111111111',
+                'city' => $this->get_card('getShippingCity'),
+                'country' => $this->get_card('getShippingCountry'),
+                'email' => $this->get_card('getEmail') ?? 'required-dummy@email.com',
+                'gsmNumber' => implode('', [$this->get_card('getPhoneExtension'), $this->get_card('getPhone')]),
+                'ip' => $this->getClientIp() ?? '127.0.0.1',
                 'registrationAddress' => trim(implode(' ', [$this->get_card('getShippingAddress1'), $this->get_card('getShippingAddress2')])),
             ]),
 
             'billingAddress' => new AddressModel([
 
                 'contactName' => $this->get_card('getBillingName'),
-                'city'        => $this->get_card('getBillingCity'),
-                'country'     => $this->get_card('getBillingCountry'),
-                'address'     => trim(implode(' ', [$this->get_card('getBillingAddress1'), $this->get_card('getBillingAddress2')])),
+                'city' => $this->get_card('getBillingCity'),
+                'country' => $this->get_card('getBillingCountry'),
+                'address' => trim(implode(' ', [$this->get_card('getBillingAddress1'), $this->get_card('getBillingAddress2')])),
 
             ]),
 
             'shippingAddress' => new AddressModel([
 
                 'contactName' => $this->get_card('getShippingName'),
-                'city'        => $this->get_card('getShippingCity'),
-                'country'     => $this->get_card('getShippingCountry'),
-                'address'     => trim(implode(' ', [$this->get_card('getShippingAddress1'), $this->get_card('getShippingAddress2')])),
+                'city' => $this->get_card('getShippingCity'),
+                'country' => $this->get_card('getShippingCountry'),
+                'address' => trim(implode(' ', [$this->get_card('getShippingAddress1'), $this->get_card('getShippingAddress2')])),
 
             ]),
 
             'basketItems' => array_map(function (Item $item) {
                 return new ProductModel([
-                    'id'        => hash('sha1', $item->getName() . $item->getPrice()),
-                    'price'     => $item->getPrice(),
-                    'name'      => $item->getName(),
+                    'id' => hash('sha1', $item->getName() . $item->getPrice()),
+                    'price' => $item->getPrice(),
+                    'name' => $item->getName(),
                     'category1' => '-',
                     'category2' => '-',
-                    'itemType'  => 'PHYSICAL',
+                    'itemType' => 'PHYSICAL',
                 ]);
             }, $this->getItems()?->all()),
 
@@ -86,9 +86,9 @@ class CheckoutFormRequest extends RemoteAbstractRequest
 
         return [
             'request_params' => $request_params,
-            'headers'        => new RequestHeadersModel([
-                'Authorization'         => $this->token($request_params),
-                'x-iyzi-rnd'            => $this->getRandomString(),
+            'headers' => new RequestHeadersModel([
+                'Authorization' => $this->token($request_params),
+                'x-iyzi-rnd' => $this->getRandomString(),
                 'x-iyzi-client-version' => 'tcgunel/omnipay-iyzico:v0.0.1',
             ]),
         ];
@@ -107,12 +107,10 @@ class CheckoutFormRequest extends RemoteAbstractRequest
     {
         $this->validateAdditionalCardFields(
             'email',
-
             'billingName',
             'billingCity',
             'billingCountry',
             'billingAddress1',
-
             'shippingName',
             'shippingCity',
             'shippingCountry',
@@ -123,13 +121,10 @@ class CheckoutFormRequest extends RemoteAbstractRequest
             'amount',
             'currency',
             'installment',
-
             'userReference',
             'nationalId',
             'clientIp',
-
             'items',
-
             'privateKey',
             'publicKey',
         );
@@ -160,11 +155,11 @@ class CheckoutFormRequest extends RemoteAbstractRequest
         $httpResponse = $this->httpClient->request(
             'POST',
             $this->getEndpoint(),
-            array_merge($data["headers"]->__toArray(), [
+            array_merge($data['headers']->__toArray(), [
                 'Content-Type' => 'application/json',
-                'Accept'       => 'application/json',
+                'Accept' => 'application/json',
             ]),
-            json_encode($data["request_params"], JSON_THROW_ON_ERROR)
+            json_encode($data['request_params'], JSON_THROW_ON_ERROR)
         );
 
         return $this->createResponse($httpResponse);

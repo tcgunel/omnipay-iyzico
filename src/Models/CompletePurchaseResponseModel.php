@@ -54,4 +54,3 @@ class CompletePurchaseResponseModel extends BaseModel
     public string $phase;
     public string $hostReference;
 }
-

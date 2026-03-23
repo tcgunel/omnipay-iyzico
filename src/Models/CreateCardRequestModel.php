@@ -67,5 +67,5 @@ class CreateCardRequestModel extends BaseModel
      * @required
      * @var
      */
-    public $clientIp = "127.0.0.1";
+    public $clientIp = '127.0.0.1';
 }
