@@ -27,7 +27,7 @@ class EnrolmentResponse extends RemoteAbstractResponse implements RedirectRespon
 
     public function getMessage(): string
     {
-        return $this->response->errorMessage;
+        return $this->response->errorMessage === 'Bu ödeme işlemi için taksit gönderilemez' ? 'Sanal POS Firmanızda Bu Taksit Tanımlı Değildir' : $this->response->errorMessage;
     }
 
     public function isRedirect(): bool
