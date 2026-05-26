@@ -11,7 +11,7 @@ class CompletePurchaseRequest extends RemoteAbstractRequest
 {
     use PurchaseGettersSetters;
 
-    protected $endpoint = '/payment/3dsecure/auth';
+    protected $endpoint = '/payment/v2/3dsecure/auth';
 
     /**
      * @throws \Omnipay\Common\Exception\InvalidRequestException
@@ -21,17 +21,19 @@ class CompletePurchaseRequest extends RemoteAbstractRequest
         $this->validateAll();
 
         $request_params = new CompletePurchaseRequestModel([
-            'locale' => $this->getLanguage(),
+            'locale'         => $this->getLanguage(),
             'conversationId' => $this->getTransactionId(),
-            'paymentId' => $this->getPaymentId(),
-            'conversationData' => $this->getConversationData() ?? '',
+            'paymentId'      => $this->getPaymentId(),
+            'paidPrice'      => $this->getAmount(),
+            'basketId'       => $this->getBasketId() ?? $this->getTransactionId(),
+            'currency'       => $this->getCurrency(),
         ]);
 
         return [
             'request_params' => $request_params,
             'headers' => new RequestHeadersModel([
-                'Authorization' => $this->token($request_params),
-                'x-iyzi-rnd' => $this->getRandomString(),
+                'Authorization'         => $this->token($request_params),
+                'x-iyzi-rnd'            => $this->getRandomString(),
                 'x-iyzi-client-version' => 'tcgunel/omnipay-iyzico:v0.0.1',
             ]),
         ];
@@ -42,13 +44,12 @@ class CompletePurchaseRequest extends RemoteAbstractRequest
      */
     protected function validateAll(): void
     {
-        $this->validate('language', 'transactionId', 'paymentId');
+        $this->validate('language', 'transactionId', 'paymentId', 'amount', 'currency');
     }
 
     /**
      * @param CompletePurchaseRequestModel $request_model
      *
-     * @return string
      * @throws \JsonException
      */
     protected function token($request_model): string
@@ -70,7 +71,6 @@ class CompletePurchaseRequest extends RemoteAbstractRequest
     /**
      * @param array{request_params: CompletePurchaseRequestModel, headers: RequestHeadersModel} $data
      *
-     * @return CompletePurchaseResponse
      * @throws \Omnipay\Iyzico\Exceptions\OmnipayIyzicoHashValidationException
      * @throws \JsonException
      */
@@ -81,7 +81,7 @@ class CompletePurchaseRequest extends RemoteAbstractRequest
             $this->getEndpoint(),
             array_merge($data['headers']->__toArray(), [
                 'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
+                'Accept'       => 'application/json',
             ]),
             json_encode($data['request_params'], JSON_THROW_ON_ERROR)
         );
