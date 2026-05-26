@@ -1,0 +1,7 @@
+{
+  "publicKey": "sandbox-public",
+  "privateKey": "sandbox-private",
+  "testMode": true,
+  "amount": "12.34",
+  "currency": "TRY"
+}

@@ -1,0 +1,5 @@
+{
+  "publicKey": "sandbox-public",
+  "privateKey": "sandbox-private",
+  "testMode": true
+}

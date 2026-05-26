@@ -1,0 +1,10 @@
+{
+  "publicKey": "sandbox-public",
+  "privateKey": "sandbox-private",
+  "testMode": true,
+  "randomString": "TEST_RAND",
+  "paymentId": "12345",
+  "language": "tr",
+  "conversationId": "test-conv-id",
+  "clientIp": "127.0.0.1"
+}

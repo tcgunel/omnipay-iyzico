@@ -4,6 +4,7 @@ namespace Omnipay\Iyzico;
 
 use Omnipay\Common\AbstractGateway;
 use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Iyzico\Message\CancelRequest;
 use Omnipay\Iyzico\Message\ChargeRequest;
 use Omnipay\Iyzico\Message\CheckoutFormInquiryRequest;
 use Omnipay\Iyzico\Message\CheckoutFormRequest;
@@ -11,6 +12,7 @@ use Omnipay\Iyzico\Message\CompletePurchaseRequest;
 use Omnipay\Iyzico\Message\EnrolmentRequest;
 use Omnipay\Iyzico\Message\PaymentInquiryRequest;
 use Omnipay\Iyzico\Message\PayWithIyzicoRequest;
+use Omnipay\Iyzico\Message\RefundRequest;
 use Omnipay\Iyzico\Message\VerifyEnrolmentRequest;
 use Omnipay\Iyzico\Traits\PurchaseGettersSetters;
 
@@ -101,5 +103,15 @@ class Gateway extends AbstractGateway
     public function payWithIyzico(array $parameters = []): AbstractRequest|CheckoutFormRequest
     {
         return $this->createRequest(PayWithIyzicoRequest::class, $parameters);
+    }
+
+    public function refund(array $parameters = []): AbstractRequest
+    {
+        return $this->createRequest(RefundRequest::class, $parameters);
+    }
+
+    public function cancel(array $parameters = []): AbstractRequest
+    {
+        return $this->createRequest(CancelRequest::class, $parameters);
     }
 }

@@ -6,11 +6,11 @@
 Omnipay gateway for Iyzico. All the methods of Iyzico implemented for easy usage.
 
 ## Requirements
-| PHP       | Package |
-|-----------|---------|
-| ^7.3-^8.0 | v1.0.0  |
+| PHP   | Package |
+|-------|---------|
+| ^8.3  | v2.x    |
 
-## Installment
+## Installation
 
 ```
 composer require tcgunel/omnipay-iyzico
@@ -18,42 +18,66 @@ composer require tcgunel/omnipay-iyzico
 
 ## Usage
 
-Please see the [Wiki](https://github.com/tcgunel/omnipay-iyzico/wiki) page for detailed usage of every method.
+```php
+$gateway = Omnipay::create('Iyzico');
+$gateway->setPublicKey('your-public-key');
+$gateway->setPrivateKey('your-private-key');
+$gateway->setTestMode(true); // sandbox
+```
 
 ## Methods
+
 #### Payment Services
 
-* binLookup($options) // [Bin Sorgulama](https://dev.ipara.com.tr/Home/PaymentServices#binInqury)
-* purchase($options) // [3D Secure](https://dev.ipara.com.tr/Home/PaymentServices#securePaymentOneStep) ile yada [3D Secure olmadan](https://dev.ipara.com.tr/Home/PaymentServices#apiPayment) ödeme.
-* paymentInquiry($options) // [Ödeme Sorgulama](https://dev.ipara.com.tr/Home/PaymentServices#paymentInqury)
-* paymentSearch($options) // [Ödeme Sorgulama (Tarih Aralığı Parametreli)](https://dev.ipara.com.tr/Home/PaymentServices#paymentInqury)
-* createLink($options) // [Link ile Ödeme](https://dev.ipara.com.tr/Home/PaymentServices#payByLink)
-* listLink($options) // [Link Sorgulama](https://dev.ipara.com.tr/Home/PaymentServices#payByLink)
-* deleteLink($options) // [Link Silme](https://dev.ipara.com.tr/Home/PaymentServices#payByLink)
-* authorize($options) // [Ön Otorizasyon Servisi](https://dev.ipara.com.tr/Home/PaymentServices#payOtorizasyon)
-* capture($options) // [Ön Provizyon Kapama Servisi](https://dev.ipara.com.tr/Home/PaymentServices#payOtorizasyon)
+* `purchase($options)` — Direct charge (non-3DS) or 3D Secure enrolment
+* `completePurchase($options)` — Complete a 3DS checkout form payment
+* `verifyEnrolment($options)` — Verify 3DS bank callback (local check, no HTTP)
+* `paymentInquiry($options)` — Query payment status by `paymentId` / `conversationId`
+* `checkoutForm($options)` — iyzico hosted checkout form
+* `checkoutFormInquiry($options)` — Query hosted checkout form status
+* `payWithIyzico($options)` — Pay with iyzico wallet
+* `binLookup($options)` — BIN / installment lookup
 
-#### Wallet Services
+#### Refund & Cancel
 
-* createCard($options) // [Kart Ekleme Servisi](https://dev.ipara.com.tr/Home/WalletServices#addcardtowallet)
-* listCard($options) // [Kartları Getir Servisi](https://dev.ipara.com.tr/Home/WalletServices#getcardsfromwallet)
-* deleteCard($options) // [Kart Sil Servisi](https://dev.ipara.com.tr/Home/WalletServices#deletecardfromwallet)
+* `refund($options)` — Refund a captured payment via `POST /v2/payment/refund`. Accepts `paymentId` (top-level) + `price` + `currency`; iyzico auto-selects the sub-transaction. Supports partial and full refunds.
 
+  ```php
+  $response = $gateway->refund([
+      'paymentId'  => 'iyzico-payment-id',
+      'amount'     => '12.34',
+      'currency'   => 'TRY',
+      'language'   => 'tr',
+      'clientIp'   => request()->ip(),
+  ])->send();
 
-#### Other Services
+  $response->isSuccessful(); // true / false
+  $response->getMessage();   // error message on failure
+  $data = $response->getData(); // RefundResponseModel
+  ```
 
-* login($options) // [SessionToken](https://documenter.getpostman.com/view/10639199/SzRw3Bnj)
+* `cancel($options)` — Void a same-day payment via `POST /payment/cancel`. Full void only (no partial amounts); operates on `paymentId`. Only valid before settlement.
 
+  ```php
+  $response = $gateway->cancel([
+      'paymentId' => 'iyzico-payment-id',
+      'language'  => 'tr',
+      'clientIp'  => request()->ip(),
+  ])->send();
+
+  $response->isSuccessful();
+  $data = $response->getData(); // CancelResponseModel
+  ```
 
 ## Tests
 ```
 composer test
 ```
-For windows:
+For Windows:
 ```
 vendor\bin\paratest.bat
 ```
 
 ## Treeware
 
-This package is [Treeware](https://treeware.earth). If you use it in production, then we ask that you [**buy the world a tree**](https://plant.treeware.earth/tcgunel/omnipay-iyzico) to thank us for our work. By contributing to the Treeware forest you’ll be creating employment for local families and restoring wildlife habitats.
+This package is [Treeware](https://treeware.earth). If you use it in production, then we ask that you [**buy the world a tree**](https://plant.treeware.earth/tcgunel/omnipay-iyzico) to thank us for our work. By contributing to the Treeware forest you'll be creating employment for local families and restoring wildlife habitats.
