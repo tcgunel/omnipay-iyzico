@@ -3,29 +3,33 @@
 namespace Omnipay\Iyzico\Message;
 
 use Omnipay\Iyzico\Helpers\Helper;
-use Omnipay\Iyzico\Models\CompletePurchaseRequestModel;
+use Omnipay\Iyzico\Models\PostAuthRequestModel;
 use Omnipay\Iyzico\Models\RequestHeadersModel;
-use Omnipay\Iyzico\Traits\PurchaseGettersSetters;
 
-class CompletePurchaseRequest extends RemoteAbstractRequest
+/**
+ * Capture (ön otorizasyon kapama / postAuth) a previously placed iyzico hold.
+ *
+ * POST /payment/postauth with the paymentId returned by the pre-authorization.
+ * paidPrice may equal (full) or be less than (partial) the authorized amount.
+ * currency is REQUIRED and must match the pre-authorization currency.
+ */
+class PostAuthRequest extends RemoteAbstractRequest
 {
-    use PurchaseGettersSetters;
-
-    protected $endpoint = '/payment/v2/3dsecure/auth';
+    protected $endpoint = '/payment/postauth';
 
     /**
      * @throws \Omnipay\Common\Exception\InvalidRequestException
      */
-    public function getData()
+    public function getData(): array
     {
         $this->validateAll();
 
-        $request_params = new CompletePurchaseRequestModel([
+        $request_params = new PostAuthRequestModel([
             'locale' => $this->getLanguage(),
-            'conversationId' => $this->getTransactionId(),
-            'paymentId' => $this->getPaymentId(),
+            'conversationId' => $this->getConversationId() ?? $this->getTransactionId() ?? uniqid('', true),
+            'paymentId' => (string) $this->getPaymentId(),
             'paidPrice' => $this->getAmount(),
-            'basketId' => $this->getBasketId() ?? $this->getTransactionId(),
+            'ip' => $this->getClientIp() ?? '127.0.0.1',
             'currency' => $this->getCurrency(),
         ]);
 
@@ -34,7 +38,7 @@ class CompletePurchaseRequest extends RemoteAbstractRequest
             'headers' => new RequestHeadersModel([
                 'Authorization' => $this->token($request_params),
                 'x-iyzi-rnd' => $this->getRandomString(),
-                'x-iyzi-client-version' => 'tcgunel/omnipay-iyzico:v0.0.1',
+                'x-iyzi-client-version' => 'tcgunel/omnipay-iyzico:v4.3.0',
             ]),
         ];
     }
@@ -44,12 +48,10 @@ class CompletePurchaseRequest extends RemoteAbstractRequest
      */
     protected function validateAll(): void
     {
-        $this->validate('language', 'transactionId', 'paymentId', 'amount', 'currency');
+        $this->validate('language', 'paymentId', 'amount', 'currency', 'privateKey', 'publicKey');
     }
 
     /**
-     * @param CompletePurchaseRequestModel $request_model
-     *
      * @throws \JsonException
      */
     protected function token($request_model): string
@@ -61,17 +63,15 @@ class CompletePurchaseRequest extends RemoteAbstractRequest
 
     /**
      * @throws \Omnipay\Iyzico\Exceptions\OmnipayIyzicoHashValidationException
-     * @throws \JsonException
      */
-    protected function createResponse($data): CompletePurchaseResponse
+    protected function createResponse($data): PostAuthResponse
     {
-        return $this->response = new CompletePurchaseResponse($this, $data);
+        return $this->response = new PostAuthResponse($this, $data);
     }
 
     /**
-     * @param array{request_params: CompletePurchaseRequestModel, headers: RequestHeadersModel} $data
+     * @param array{request_params: PostAuthRequestModel, headers: RequestHeadersModel} $data
      *
-     * @throws \Omnipay\Iyzico\Exceptions\OmnipayIyzicoHashValidationException
      * @throws \JsonException
      */
     public function sendData($data)

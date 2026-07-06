@@ -129,3 +129,8 @@ parameters:
 			message: "#^PHPDoc tag @var does not specify variable name\\.$#"
 			count: 1
 			path: src/Models/ChargeRequestModel.php
+
+		-
+			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			count: 2
+			path: src/Message/PostAuthRequest.php

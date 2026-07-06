@@ -8,10 +8,14 @@ use Omnipay\Iyzico\Message\CancelRequest;
 use Omnipay\Iyzico\Message\ChargeRequest;
 use Omnipay\Iyzico\Message\CheckoutFormInquiryRequest;
 use Omnipay\Iyzico\Message\CheckoutFormRequest;
+use Omnipay\Iyzico\Message\CompleteAuthorizeRequest;
 use Omnipay\Iyzico\Message\CompletePurchaseRequest;
 use Omnipay\Iyzico\Message\EnrolmentRequest;
 use Omnipay\Iyzico\Message\PaymentInquiryRequest;
 use Omnipay\Iyzico\Message\PayWithIyzicoRequest;
+use Omnipay\Iyzico\Message\PostAuthRequest;
+use Omnipay\Iyzico\Message\PreAuthEnrolmentRequest;
+use Omnipay\Iyzico\Message\PreAuthRequest;
 use Omnipay\Iyzico\Message\RefundRequest;
 use Omnipay\Iyzico\Message\VerifyEnrolmentRequest;
 use Omnipay\Iyzico\Traits\PurchaseGettersSetters;
@@ -22,7 +26,6 @@ use Omnipay\Iyzico\Traits\PurchaseGettersSetters;
  * 2015, mobius.studio
  * http://www.github.com/tcgunel/omnipay-iyzico
  * @method \Omnipay\Common\Message\NotificationInterface acceptNotification(array $options = [])
- * @method \Omnipay\Common\Message\RequestInterface completeAuthorize(array $options = [])
  */
 class Gateway extends AbstractGateway
 {
@@ -111,6 +114,49 @@ class Gateway extends AbstractGateway
     }
 
     public function cancel(array $parameters = []): AbstractRequest
+    {
+        return $this->createRequest(CancelRequest::class, $parameters);
+    }
+
+    /**
+     * Pre-authorization (ön otorizasyon): place a hold without capturing.
+     * secure=true routes through the 3DS pre-auth initialization; otherwise a
+     * direct /payment/preauth call.
+     */
+    public function authorize(array $parameters = []): AbstractRequest
+    {
+        if (
+            (array_key_exists('secure', $parameters) && $parameters['secure'] === true) ||
+            $this->getSecure() === true
+        ) {
+
+            return $this->createRequest(PreAuthEnrolmentRequest::class, $parameters);
+
+        }
+
+        return $this->createRequest(PreAuthRequest::class, $parameters);
+    }
+
+    /**
+     * Finalize a 3D Secure pre-authorization after the challenge returns.
+     */
+    public function completeAuthorize(array $parameters = []): AbstractRequest
+    {
+        return $this->createRequest(CompleteAuthorizeRequest::class, $parameters);
+    }
+
+    /**
+     * Capture (ön otorizasyon kapama / postAuth) a previously placed hold.
+     */
+    public function capture(array $parameters = []): AbstractRequest
+    {
+        return $this->createRequest(PostAuthRequest::class, $parameters);
+    }
+
+    /**
+     * Void a pre-authorization hold (Omnipay-standard alias of cancel()).
+     */
+    public function void(array $parameters = []): AbstractRequest
     {
         return $this->createRequest(CancelRequest::class, $parameters);
     }

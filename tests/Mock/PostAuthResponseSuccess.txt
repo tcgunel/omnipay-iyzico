@@ -1,0 +1,6 @@
+HTTP/1.1 200 OK
+Server: nginx
+Content-Type: application/json
+Connection: close
+
+{"status":"success","locale":"tr","systemTime":1657782727657,"conversationId":"123456789","paidPrice":150,"paymentId":"20000123","currency":"TRY","phase":"POST_AUTH","authCode":"934393","hostReference":"mockhostrfn"}
